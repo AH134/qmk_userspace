@@ -1,45 +1,13 @@
-#include "keycodes.h"
 #include QMK_KEYBOARD_H
-#include "config.h"
-enum layer_names {
-    _QWERTY,
-    _SYMBOL,
-    _NAVIGATION,
-    _GAMING
-};
-
-// MACROS
-enum custom_keycodes {
-    _BCK_DIR = SAFE_RANGE,
-    _VIMFQ,
-    _VIMW,
-    _VIMWQ,
-    _CBRENT_COMBO
-};
-
-// LAYERS
-#define _MO_SYM MO(_SYMBOL)
-#define _MO_NAV MO(_NAVIGATION)
-#define _TG_GAM TG(_GAMING)
-
-// KEYCODE ALIAS
-#define _OSM_LSFT OSM(KC_LSFT)
-#define _ALT_TAB LALT(KC_TAB)
-#define _SALT_TAB S(LALT(KC_TAB)) 
-
-// COMBOS
-enum combos {
-   _JK_ESC,
-   _KL_ENT,
-   _COMDOT_CBRENT,
-
-};
+#include "layers.h"
+#include "custom_keycodes.h"
+#include "combos.h"
 
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM comdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
-combo_t key_combos[_COMBO_COUNT] = {
+combo_t key_combos[] = {
    [_JK_ESC] = COMBO(jk_combo, KC_ESC),
    [_KL_ENT] = COMBO(kl_combo, KC_ENT),
    [_COMDOT_CBRENT] = COMBO(comdot_combo, _CBRENT_COMBO)
@@ -80,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _OSM_LSFT, KC_CAPS, _SALT_TAB, KC_F15, _______,                         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+     _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, EE_CLR,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -100,6 +68,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+layer_state_t layer_state_set_user(layer_state_t state){
+   if (get_highest_layer(state) == _GAMING){
+      rgb_matrix_enable_noeeprom();
+   } else {
+      rgb_matrix_disable_noeeprom();
+   }
+   return state;
+};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    switch (keycode) {
@@ -130,7 +106,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case _CBRENT_COMBO:
          if (record->event.pressed) {
             // when combo _CBRENT_COMBO is pressed
-            SEND_STRING("{}"SS_TAP(X_LEFT)"\n");
+            SEND_STRING("{};"SS_TAP(X_LEFT)SS_TAP(X_LEFT)"\n");
          }
          break;
    }

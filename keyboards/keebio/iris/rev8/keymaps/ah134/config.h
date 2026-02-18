@@ -1,4 +1,6 @@
 #pragma once
 
-#define _COMBO_COUNT 3
-#define _COMBO_TERM 50
+#define COMBO_TERM 45
+
+#define RGB_MATRIX_DEFAULT_ON false
+#define RGB_MATRIX_SLEEP
