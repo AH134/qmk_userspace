@@ -8,13 +8,13 @@ const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM comdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[] = {
-   [_JK_ESC] = COMBO(jk_combo, KC_ESC),
-   [_KL_ENT] = COMBO(kl_combo, KC_ENT),
-   [_COMDOT_CBRENT] = COMBO(comdot_combo, _CBRENT_COMBO)
+   [JK_ESC] = COMBO(jk_combo, KC_ESC),
+   [KL_ENT] = COMBO(kl_combo, KC_ENT),
+   [COMDOT_CBRENT] = COMBO(comdot_combo, CBRENT_COMBO)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QWERTY] = LAYOUT(
+    [QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_F24,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -22,12 +22,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LGUI,          _TG_GAM,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RCTL,
+     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LGUI,          TG_GAM,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RCTL,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LALT, _MO_SYM, KC_ENT,                    _MO_NAV,  KC_SPC,  KC_ESC
+                                    KC_LALT, MO_SYM, KC_ENT,                     MO_NAV,  KC_SPC,  KC_ESC
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
-    [_SYMBOL] = LAYOUT(
+    [SYMBOL] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -35,25 +35,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_HASH,                            KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_AT,   _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, _BCK_DIR, _______,         _______, KC_UNDS, KC_DLR,  KC_LCBR, KC_RCBR, KC_QUES, _______,
+     _______, KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, BCK_DIR, _______,          _______, KC_UNDS, KC_DLR,  KC_LCBR, KC_RCBR, KC_QUES, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
-    [_NAVIGATION] = LAYOUT(
+    [NAVIGATION] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _VIMFQ,  _VIMW,   _VIMWQ,  _ALT_TAB, _______,                           _______, _______, _______, _______, KC_PSCR, _______,
+     _______, VIMFQ,   VIMW,    VIMWQ,   ALT_TAB, _______,                           _______, _______, _______, _______, KC_PSCR, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _OSM_LSFT, KC_CAPS, _SALT_TAB, KC_F15, _______,                         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+     _______, OSM_LSFT, KC_CAPS, SALT_TAB, KC_F15, _______,                         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, EE_CLR,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
-    [_GAMING] = LAYOUT(
+    [GAMING] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -63,13 +63,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, KC_SPC,  _MO_NAV,                   _______, _______, _______
+                                    _______, KC_SPC,  MO_NAV,                   _______, _______, _______
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 };
 
 layer_state_t layer_state_set_user(layer_state_t state){
-   if (get_highest_layer(state) == _GAMING){
+   if (get_highest_layer(state) == GAMING){
       rgb_matrix_enable_noeeprom();
    } else {
       rgb_matrix_disable_noeeprom();
@@ -79,31 +79,31 @@ layer_state_t layer_state_set_user(layer_state_t state){
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    switch (keycode) {
-      case _BCK_DIR:
+      case BCK_DIR:
          if (record->event.pressed) {
             // when keycode _BCK_DIR is pressed
             SEND_STRING("../");
          }
          break;
-      case _VIMFQ:
+      case VIMFQ:
          if (record->event.pressed) {
             // when keycode _VIMFQ is pressed
             SEND_STRING(":q!\n");
          }
          break;
-      case _VIMW:
+      case VIMW:
          if (record->event.pressed) {
             // when keycode _VIMW is pressed
             SEND_STRING(":w\n");
          }
          break;
-      case _VIMWQ:
+      case VIMWQ:
          if (record->event.pressed) {
             // when keycode _VIMWQ is pressed
             SEND_STRING(":wq\n");
          }
          break;
-      case _CBRENT_COMBO:
+      case CBRENT_COMBO:
          if (record->event.pressed) {
             // when combo _CBRENT_COMBO is pressed
             SEND_STRING("{};"SS_TAP(X_LEFT)SS_TAP(X_LEFT)"\n");

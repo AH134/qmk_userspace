@@ -1,7 +1,7 @@
 #pragma once
 
 enum combos {
-   _JK_ESC,
-   _KL_ENT,
-   _COMDOT_CBRENT,
+   JK_ESC,
+   KL_ENT,
+   COMDOT_CBRENT,
 };
