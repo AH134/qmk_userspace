@@ -1,16 +1,18 @@
+#include "action.h"
+#include "quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 #include "layers.h"
 #include "custom_keycodes.h"
 #include "combos.h"
 
-const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM comdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM kj_combo[] = {KC_K, KC_J, COMBO_END};
+const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM lrbraces_combo[] = {KC_LCBR, KC_RCBR, COMBO_END};
 
 combo_t key_combos[] = {
-   [JK_ESC] = COMBO(jk_combo, KC_ESC),
-   [KL_ENT] = COMBO(kl_combo, KC_ENT),
-   [COMDOT_CBRENT] = COMBO(comdot_combo, CBRENT_COMBO)
+   [KJ_ESC] = COMBO(kj_combo, KC_ESC),
+   [DF_ENT] = COMBO(df_combo, KC_ENT),
+   [LRBRC_BRCENT] = COMBO(lrbraces_combo, BRCENT_COMBO)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -33,9 +35,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_GRV,  KC_LT,   KC_GT,   KC_DQT,  KC_TILD,                            KC_AMPR, KC_QUOT, KC_LBRC, KC_RBRC, KC_PERC, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_HASH,                            KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_AT,   _______,
+     _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_HASH,                            KC_UNDS, KC_COLN, KC_LPRN, KC_RPRN, KC_AT,   _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, BCK_DIR, _______,          _______, KC_UNDS, KC_DLR,  KC_LCBR, KC_RCBR, KC_QUES, _______,
+     _______, KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, BCK_DIR, _______,          _______, KC_PIPE, KC_DLR,  KC_LCBR, KC_RCBR, KC_QUES, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -44,9 +46,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, VIMFQ,   VIMW,    VIMWQ,   ALT_TAB, _______,                           _______, _______, _______, _______, KC_PSCR, _______,
+     _______, VIMFQ,   VIMW,    VIMWQ,   ALT_TAB, _______,                            _______, _______, _______, _______, KC_PSCR, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, OSM_LSFT, KC_CAPS, SALT_TAB, KC_F15, _______,                         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+     _______, OS_LSFT, KC_CAPS, SALT_TAB, KC_F15, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, EE_CLR,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -71,8 +73,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state){
    if (get_highest_layer(state) == GAMING){
       rgb_matrix_enable_noeeprom();
+      combo_disable();
    } else {
       rgb_matrix_disable_noeeprom();
+      combo_enable();
    }
    return state;
 };
@@ -103,7 +107,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(":wq\n");
          }
          break;
-      case CBRENT_COMBO:
+      case BRCENT_COMBO:
          if (record->event.pressed) {
             // when combo _CBRENT_COMBO is pressed
             SEND_STRING("{};"SS_TAP(X_LEFT)SS_TAP(X_LEFT)"\n");

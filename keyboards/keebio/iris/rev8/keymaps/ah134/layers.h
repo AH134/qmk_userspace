@@ -14,6 +14,5 @@ enum layer_names {
 #define TG_GAM TG(GAMING)
 
 // keycode aliases
-#define OSM_LSFT OSM(KC_LSFT)
 #define ALT_TAB LALT(KC_TAB)
 #define SALT_TAB S(LALT(KC_TAB)) 

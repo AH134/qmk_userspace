@@ -6,5 +6,5 @@ enum custom_keycodes {
     VIMFQ,
     VIMW,
     VIMWQ,
-    CBRENT_COMBO
+    BRCENT_COMBO
 };
