@@ -12,7 +12,7 @@ const uint16_t PROGMEM kj_combo[]       = {KC_K, KC_J, COMBO_END};
 const uint16_t PROGMEM df_combo[]       = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM commadot_combo[] = {KC_COMMA, KC_DOT, COMBO_END};
 
-combo_t key_combos[] = {[KJ_ESC] = COMBO(kj_combo, KC_ESC), [DF_ENT] = COMBO(df_combo, KC_ENT), [LRBRC_BRCENT] = COMBO(commadot_combo, BRCENT_COMBO)};
+combo_t key_combos[] = {[KJ_ESC] = COMBO(kj_combo, KC_ESC), [DF_ENT] = COMBO(df_combo, KC_TAB), [LRBRC_BRCENT] = COMBO(commadot_combo, BRCENT_COMBO)};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT(
@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
         _______, VIMFQ, VIMW, VIMWQ, ALT_TAB, _______, _______, _______, _______, _______, KC_PSCR, _______,
         // ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-        _______, OS_LSFT, KC_CAPS, SALT_TAB, KC_F15, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_LGUI, _______,
+        _______, OS_LSFT, KC_CAPS, CALT_TAB, KC_F15, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_LGUI, _______,
         // ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, EE_CLR,
         // └────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -86,7 +86,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     if (get_highest_layer(state) == GAMING) {
         rgb_matrix_enable_noeeprom();
         rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-        rgb_matrix_sethsv_noeeprom(201, 55, 60);
+        rgb_matrix_sethsv_noeeprom(255, 45, 55);
         combo_disable();
     } else {
         rgb_matrix_disable_noeeprom();

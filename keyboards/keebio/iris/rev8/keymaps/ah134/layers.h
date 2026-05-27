@@ -17,6 +17,6 @@ enum layer_names {
 
 // keycode aliases
 #define ALT_TAB LALT(KC_TAB)
-#define SALT_TAB S(LALT(KC_TAB)) 
+#define CALT_TAB C(LALT(KC_TAB)) 
 #define LT_NUMENT LT(MO_NUM, KC_ENT) 
 #define LT_NAVENT LT(MO_NAV, KC_ENT)
